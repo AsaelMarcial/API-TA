@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CuentaController extends Controller
 {
+    
     public function create(Request $request){
         $rules = [
             'nombre' => 'required|string',
@@ -37,6 +38,38 @@ class CuentaController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Put(
+     *     path="/editInfo",
+     *     tags={"CUENTA"},
+     *     summary="Actualiza información de la cuenta",
+     *     operationId="editInfo",
+     *      @OA\Parameter(
+     *          name="info",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error"
+     *     ),
+     *     security={
+     *         {"apiAuth": {}}
+     *     }
+     * )
+     *
+     * Get list of users.
+     *
+     * @param Request $request
+     * @return void
+     */
     public function editInfo(Request $request){
         $rules = [
             'info' => 'required|string'
@@ -55,6 +88,26 @@ class CuentaController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/getCuenta",
+     *     tags={"CUENTA"},
+     *     summary="Obtiene informacion de la cuenta",
+     *     operationId="getCuenta",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success"
+     *     ),
+     *     security={
+     *         {"apiAuth": {}}
+     *     }
+     * )
+     *
+     * Get list of users.
+     *
+     * @param Request $request
+     * @return void
+     */
     public function getCuenta (Request $request){
         $idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();

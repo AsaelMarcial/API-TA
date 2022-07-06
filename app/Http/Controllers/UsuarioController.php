@@ -15,6 +15,38 @@ use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
+    /**
+     * @OA\Post(
+     *     path="/login",
+     *     tags={"CUENTA"},
+     *     summary="Inicia sesion.",
+     *     operationId="login",
+     *     @OA\Parameter(
+     *          name="username",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="password",
+     *          in="query",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error de solicitud"
+     *     )
+     * )
+     *
+     *
+     * @param Request $request
+     * @return void
+     */
     public function authenticate(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -43,6 +75,74 @@ class UsuarioController extends Controller
         return response()->json(compact('user'));
     }
 
+    /**
+     * @OA\Post(
+     *     path="/register",
+     *     tags={"CUENTA"},
+     *     summary="Crea una cuenta.",
+     *     operationId="register",
+     *     @OA\Parameter(
+     *          name="username",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="password",
+     *          in="query",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="nombre",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="apellidos",
+     *          in="query",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="email",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="info",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Solicitud exitosa"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error de solicitud"
+     *     )
+     * )
+     *
+     *
+     * @param Request $request
+     * @return void
+     */
     public function register(Request $request){
 
         $validator = Validator::make($request->all(), [

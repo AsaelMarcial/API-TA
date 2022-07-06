@@ -17,8 +17,20 @@ class JwtMiddleware extends BaseMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+/**
+ * @OA\SecurityScheme(
+ *     type="http",
+ *     description="Inicie sesión con correo electrónico y contraseña para obtener el token de autenticación",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="apiAuth",
+ * )
+ */
     public function handle($request, Closure $next)
     {
+
         try {
             $user = JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {

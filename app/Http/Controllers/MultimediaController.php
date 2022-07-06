@@ -11,6 +11,7 @@ use function Symfony\Component\String\u;
 
 class MultimediaController extends Controller
 {
+
     public function subirFotoPerfil(Request $request){
 
         $rules = [

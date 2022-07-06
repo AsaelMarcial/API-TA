@@ -1,0 +1,508 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi API-TA Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "asae_marcial@hotmail.es"
+        },
+        "version": "2.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api"
+        }
+    ],
+    "paths": {
+        "/editInfo": {
+            "put": {
+                "tags": [
+                    "CUENTA"
+                ],
+                "summary": "Actualiza información de la cuenta",
+                "operationId": "editInfo",
+                "parameters": [
+                    {
+                        "name": "info",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/getCuenta": {
+            "get": {
+                "tags": [
+                    "CUENTA"
+                ],
+                "summary": "Obtiene informacion de la cuenta",
+                "operationId": "getCuenta",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/getSeguidores": {
+            "get": {
+                "tags": [
+                    "FOLLOWERS"
+                ],
+                "summary": "Obtiene los usuarios a los que sigue la cuenta.",
+                "operationId": "getSeguidores",
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/getSeguidos": {
+            "get": {
+                "tags": [
+                    "FOLLOWERS"
+                ],
+                "summary": "Obtiene los usuarios que siguen la cuenta.",
+                "operationId": "getSeguidos",
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{idSeguido}/seguirUsuario": {
+            "post": {
+                "tags": [
+                    "FOLLOWERS"
+                ],
+                "summary": "Seguir a un usuario.",
+                "operationId": "seguirUsuario",
+                "parameters": [
+                    {
+                        "name": "idSeguido",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{idSeguido}/unfollowUsuario": {
+            "delete": {
+                "tags": [
+                    "FOLLOWERS"
+                ],
+                "summary": "Dejar de seguir a un usuario.",
+                "operationId": "unfollowUsuario",
+                "parameters": [
+                    {
+                        "name": "idSeguido",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{username}/buscarUsuario": {
+            "get": {
+                "tags": [
+                    "BUSQUEDA"
+                ],
+                "summary": "Busca a un usuario por su username.",
+                "operationId": "buscarUsuario",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error en la solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{idUsuario}/mostrarCuenta": {
+            "get": {
+                "tags": [
+                    "BUSQUEDA"
+                ],
+                "summary": "Muestra una cuenta.",
+                "operationId": "mostrarCuenta",
+                "parameters": [
+                    {
+                        "name": "idUsuario",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/getPostSeguidos": {
+            "get": {
+                "tags": [
+                    "POSTS"
+                ],
+                "summary": "Obtiene las publicaciones de los usuarios seguidos.",
+                "operationId": "getPostSeguidos",
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/misPosts": {
+            "get": {
+                "tags": [
+                    "POSTS"
+                ],
+                "summary": "Obtiene las publicaciones de los usuarios logeado.",
+                "operationId": "misPosts",
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/createPost": {
+            "post": {
+                "tags": [
+                    "POSTS"
+                ],
+                "summary": "Crea un publicación.",
+                "operationId": "createPost",
+                "parameters": [
+                    {
+                        "name": "descripcion",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ruta",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{idPost}/editPost": {
+            "put": {
+                "tags": [
+                    "POSTS"
+                ],
+                "summary": "Edita un publicación.",
+                "operationId": "editPost",
+                "parameters": [
+                    {
+                        "name": "idPost",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcion",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/{idPost}/deletePost": {
+            "delete": {
+                "tags": [
+                    "POSTS"
+                ],
+                "summary": "Elimina una publicación.",
+                "operationId": "deletePost",
+                "parameters": [
+                    {
+                        "name": "idPost",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "CUENTA"
+                ],
+                "summary": "Inicia sesion.",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "CUENTA"
+                ],
+                "summary": "Crea una cuenta.",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "apellidos",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "info",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud exitosa"
+                    },
+                    "400": {
+                        "description": "Error de solicitud"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Inicie sesión con correo electrónico y contraseña para obtener el token de autenticación",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
